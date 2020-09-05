@@ -1,12 +1,18 @@
 {
-	"name": "iteration",
+	"name": "@felis392/iteration-js",
 	"description": "Utilities for JavaScript Iterable objects.",
-	"version": "1.0.0",
+	"version": "0.0.1",
 	"main": "index.js",
 	"author": "felis392",
 	"license": "MIT",
 	"type": "module",
-	"private": true,
+	"private": false,
+  "homepage": "https://github.com/felis392/iteration-js",
+  "bugs": "https://github.com/felis392/iteration-js/issues",
+	"repository": {
+    "url": "https://github.com/felis392/iteration-js",
+    "type": "git"
+	},
 	"devDependencies": {
 		"tiny-esm-test-runner": "^1.2.2"
 	},
