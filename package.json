@@ -1,9 +1,9 @@
 {
 	"name": "@felis392/iteration-js",
 	"description": "Utilities for JavaScript Iterable objects.",
-	"version": "0.2.2",
+	"version": "0.2.3",
 	"main": "./src/index.js",
-	"types": "./src/index.d.ts",
+	"typings": "./src/index.d.ts",
 	"author": "felis392",
 	"license": "MIT",
 	"type": "module",
