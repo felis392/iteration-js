@@ -64,7 +64,7 @@ export class Iteration {
 	 * @returns {Iteration.<T>} The new Iteration. Cannot reuse.
 	 */
 	limit(maxSize) {
-		return limit(this[$iterable], maxSize);
+		return Iteration.on(limit(this[$iterable], maxSize));
 	}
 
 	/**
