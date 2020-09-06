@@ -7,7 +7,7 @@
 	"author": "felis392",
 	"license": "MIT",
 	"type": "module",
-	"private": false,
+	"private": true,
   "homepage": "https://github.com/felis392/iteration-js",
   "bugs": "https://github.com/felis392/iteration-js/issues",
 	"repository": {
