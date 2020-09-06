@@ -9,13 +9,14 @@ import peek from './peek.js';
 import skip from './skip.js';
 import takeWhile from './takeWhile.js';
 import zip from './zip.js';
+import reduce from './reduce.js';
 
 /** private key */
 const $iterable = Symbol('iterable');
 
 /**
  * A wrapper class for chaining operations such as iterable collections and infinite lists.
- * @template T element type
+ * @template T element type.
  */
 export class Iteration {
 	/**
@@ -90,9 +91,9 @@ export class Iteration {
 
 	/**
 	 * Maps the element to another type.
-	 * @template S another type
-	 * @param {(v: T) => S} transformer Transformer function.
-	 * @returns {Iteration.<S>} The new Iteration. Cannot reuse.
+	 * @template U another type.
+	 * @param {(v: T) => U} mapper Transformer function.
+	 * @returns {Iteration.<U>} The new Iteration. Cannot reuse.
 	 */
 	map(mapper) {
 		return Iteration.on(map(this[$iterable], mapper));
@@ -110,12 +111,15 @@ export class Iteration {
 	}
 
 	/**
-	 * Returns the elements until the condition is no longer met. Discard the rest.
-	 * @param {(v: T) => boolean} predicate A predicate that determines whether the value is still returned.
-	 * @returns {Iteration.<T>} The new Iteration. Cannot reuse.
+	 * Performs a reduction on the elements of a iterable object using the initial value,
+	 * cumulative, and associative functions.
+	 * @template U result type.
+	 * @param {U} initial Initial value.
+	 * @param {(result: U, element: T) => U} accumulator A function that transforms and calculates the result.
+	 * @returns {U} Result value.
 	 */
-	takeWhile(predicate) {
-		return Iteration.on(takeWhile(this[$iterable], predicate));
+	reduce(initial, accumulator) {
+		return reduce(this[$iterable], initial, accumulator);
 	}
 
 	/**
@@ -123,8 +127,17 @@ export class Iteration {
 	 * @param {number} n The number of elements to skip from the beginning.
 	 * @returns {Iteration.<T>} The new Iteration. Cannot reuse.
 	 */
-	skip(n) {
+	 skip(n) {
 		return Iteration.on(skip(this[$iterable], n));
+	}
+
+	/**
+	 * Returns the elements until the condition is no longer met. Discard the rest.
+	 * @param {(v: T) => boolean} predicate A predicate that determines whether the value is still returned.
+	 * @returns {Iteration.<T>} The new Iteration. Cannot reuse.
+	 */
+	takeWhile(predicate) {
+		return Iteration.on(takeWhile(this[$iterable], predicate));
 	}
 
 	/**

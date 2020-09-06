@@ -10,6 +10,7 @@ export {map} from './map.js';
 export {peek} from './peek.js';
 export {range} from './range.js';
 export {rangeClosed} from './rangeClosed.js';
-export {takeWhile} from './takeWhile.js';
+export {reduce} from './reduce.js';
 export {skip} from './skip.js';
+export {takeWhile} from './takeWhile.js';
 export {zip} from './zip.js';

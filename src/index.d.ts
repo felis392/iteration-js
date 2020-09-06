@@ -6,8 +6,9 @@ export declare class Iteration<T> {
 	findFirst(predicate?: (v: T) => boolean): T?;
 	filter(predicate: (v: T) => boolean): Iteration<T>;
 	limit(maxSize: number): Iteration<T>;
-	map<S>(mapper: (v: T) => S): Iteration<S>;
+	map<U>(mapper: (v: T) => U): Iteration<U>;
 	peek(consumer: (v: T) => any): Iteration<T>;
+	reduce<U>(initial: U, accumulator: (result: U, element: T) => U): U;
 	skip(n: number): Iteration<T>;
 	takeWhile(predicate: (v: T) => boolean): Iteration<T>;
 	zip(another: Iterable<T>): Iteration<Array<T>>;
@@ -49,15 +50,21 @@ export declare function limit<T>(
 	maxSize: number
 ): Iterable<T>;
 
-export declare function map<T,S>(
+export declare function map<T,U>(
 	iterable: Iterable<T>,
-	transformer: (v: T) => S
-): Iterable<S>;
+	transformer: (v: T) => U
+): Iterable<U>;
 
 export declare function peek<T>(
 	iterable: Iterable<T>,
 	consumer: (v: T) => any
 ): Iterable<T>;
+
+export declare function reduce<T,U>(
+	iterable: Iterable<T>,
+	initial: U,
+	accumulator: (result: U, element: T) => U
+): U;
 
 export declare function skip<T>(
 	iterable: Iterable<T>,
