@@ -7,13 +7,14 @@ import takeWhile from './takeWhile.js';
 import skip from './skip.js';
 import limit from './limit.js';
 import findFirst from './findFirst.js';
+import concat from './concat.js';
 
 /** private key */
 const $iterable = Symbol('iterable');
 
 /**
  * A wrapper class for chaining operations such as iterable collections and infinite lists.
- *  @template T element type
+ * @template T element type
  */
 export class Iteration {
 	/**
@@ -26,10 +27,19 @@ export class Iteration {
 	/**
 	 * Initialize this with a iterable object.
 	 * @param {Iterable.<T>} iterable Iterable object.
-	 * @returns {Iteration.<T>} the new Iteration object.
+	 * @returns {Iteration.<T>} the new Iteration object. Cannot reuse.
 	 */
 	static on(iterable) {
 		return new Iteration(iterable);
+	}
+
+	/**
+	 * Concatenate iterable objects.
+	 * @param {Iterable.<T>} subsequent Iterable object.
+	 * @returns {Iteration.<T>} The new Iteration. Cannot reuse.
+	 */
+	concat(subsequent) {
+		return Iteration.on(concat(this[$iterable], subsequent));
 	}
 
 	/**

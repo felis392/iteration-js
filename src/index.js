@@ -1,4 +1,5 @@
 export {Iteration} from './Iteration.js';
+export {concat} from './concat.js';
 export {dropWhile} from './dropWhile.js';
 export {filter} from './filter.js';
 export {findFirst} from './findFirst.js';

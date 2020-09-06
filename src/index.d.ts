@@ -1,5 +1,6 @@
 export declare class Iteration<T> {
 	static on<T>(iterable: Iterable<T>): Iteration<T>;
+	concat(subsequent: Iterable<T>): Iteration<T>;
 	dropWhile(predicate: (v: T) => boolean): Iteration<T>;
 	forEach(consumer: (v: T) => any): void;
 	findFirst(predicate?: (v: T) => boolean): T?;
@@ -10,6 +11,11 @@ export declare class Iteration<T> {
 	skip(n: number): Iteration<T>;
 	takeWhile(predicate: (v: T) => boolean): Iteration<T>;
 }
+
+export declare function concat<T>(
+	iterable: Iterable<T>,
+	subsequent: Iterable<T>
+): Iterable<T>;
 
 export declare function dropWhile<T>(
 	iterable: Iterable<T>,
