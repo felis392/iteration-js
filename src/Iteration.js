@@ -1,9 +1,11 @@
-import forEach from './forEach.js';
-import filter from './filter.js';
 import dropWhile from './dropWhile.js';
-import takeWhile from './takeWhile.js';
+import filter from './filter.js';
+import forEach from './forEach.js';
 import map from './map.js';
 import peek from './peek.js';
+import takeWhile from './takeWhile.js';
+import skip from './skip.js';
+import { limit } from './index.js';
 
 /** private key */
 const $iterable = Symbol('iterable');
@@ -30,12 +32,12 @@ export class Iteration {
 	}
 
 	/**
-	 * Perform the iteration.
-	 * @param {(v: T) => any} consumer Consumer function.
-	 * @returns {void} Nothing.
+	 * Discards the element while the condition is met. And it returns the rest.
+	 * @param {(v: T) => boolean} predicate Predicate to determine whether to discard the value.
+	 * @returns {Iteration.<T>} The new Iteration. Cannot reuse.
 	 */
-	forEach(consumer) {
-		forEach(this[$iterable], consumer);
+	dropWhile(predicate) {
+		return Iteration.on(dropWhile(this[$iterable], predicate));
 	}
 
 	/**
@@ -48,21 +50,21 @@ export class Iteration {
 	}
 
 	/**
-	 * Discards the element while the condition is met. And it returns the rest.
-	 * @param {(v: T) => boolean} predicate Predicate to determine whether to discard the value.
-	 * @returns {Iteration.<T>} The new Iteration. Cannot reuse.
+	 * Perform the iteration.
+	 * @param {(v: T) => any} consumer Consumer function.
+	 * @returns {void} Nothing.
 	 */
-	dropWhile(predicate) {
-		return Iteration.on(dropWhile(this[$iterable], predicate));
+	forEach(consumer) {
+		forEach(this[$iterable], consumer);
 	}
 
 	/**
-	 * Returns the elements until the condition is no longer met. Discard the rest.
-	 * @param {(v: T) => boolean} predicate A predicate that determines whether the value is still returned.
+	 * Limit the number of elements.
+	 * @param {number} maxSize Maximum number of elements.
 	 * @returns {Iteration.<T>} The new Iteration. Cannot reuse.
 	 */
-	takeWhile(predicate) {
-		return Iteration.on(takeWhile(this[$iterable], predicate));
+	limit(maxSize) {
+		return limit(this[$iterable], maxSize);
 	}
 
 	/**
@@ -80,9 +82,27 @@ export class Iteration {
 	 *
 	 * This is intended for logging during debugging, for example.
 	 * @param {(v: T) => any} consumer Consumer function.
-	 * @returns {Iteration.<S>} The new Iteration. Cannot reuse.
+	 * @returns {Iteration.<T>} The new Iteration. Cannot reuse.
 	 */
 	peek(consumer) {
 		return Iteration.on(peek(this[$iterable], consumer));
+	}
+
+	/**
+	 * Returns the elements until the condition is no longer met. Discard the rest.
+	 * @param {(v: T) => boolean} predicate A predicate that determines whether the value is still returned.
+	 * @returns {Iteration.<T>} The new Iteration. Cannot reuse.
+	 */
+	takeWhile(predicate) {
+		return Iteration.on(takeWhile(this[$iterable], predicate));
+	}
+
+	/**
+	 * Remove n elements from the beginning.
+	 * @param {number} n The number of elements to skip from the beginning.
+	 * @returns {Iteration.<T>} The new Iteration. Cannot reuse.
+	 */
+	skip(n) {
+		return Iteration.on(skip(this[$iterable], n));
 	}
 }
