@@ -15,7 +15,6 @@ export declare function forEach<T>(
 
 export declare class Iteration<T> {
 	static on<T>(iterable: Iterable<T>): Iteration<T>;
-	[Symbol.iterator](): Iterable<T>;
 	forEach(consumer: (v: T) => any): void;
 	filter(predicate: (v: T) => boolean): Iteration<T>;
 	dropWhile(predicate: (v: T) => boolean): Iteration<T>;
@@ -48,3 +47,19 @@ export declare function takeWhile<T>(
 	iterable: Iterable<T>,
 	predicate: (v: T) => boolean
 ): Iterable<T>;
+
+export declare function iterate<T>(
+	seed: T,
+	hasNext: (v: T) => boolean,
+	next: (v: T) => T
+): Iterable<T>;
+
+export declare function range(
+	start: number,
+	end: number
+): Iterable<number>;
+
+export declare function rangeClosed(
+	start: number,
+	end: number
+): Iterable<number>;

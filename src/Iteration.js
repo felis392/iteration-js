@@ -30,17 +30,6 @@ export class Iteration {
 	}
 
 	/**
-	 * implements "iterator protocol".
-	 * @returns {Iterable.<T>} the new iterable. Cannor reuse.
-	 */
-	[Symbol.iterator]() {
-		return function*(iterable) {
-			for (const v of iterable)
-				yield v;
-		}(this[$iterable]);
-	}
-
-	/**
 	 * Perform the iteration.
 	 * @param {(v: T) => any} consumer Consumer function.
 	 * @returns {void} Nothing.
