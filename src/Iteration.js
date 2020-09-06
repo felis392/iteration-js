@@ -1,13 +1,14 @@
+import concat from './concat.js';
 import dropWhile from './dropWhile.js';
+import findFirst from './findFirst.js';
 import filter from './filter.js';
 import forEach from './forEach.js';
+import limit from './limit.js';
 import map from './map.js';
 import peek from './peek.js';
-import takeWhile from './takeWhile.js';
 import skip from './skip.js';
-import limit from './limit.js';
-import findFirst from './findFirst.js';
-import concat from './concat.js';
+import takeWhile from './takeWhile.js';
+import zip from './zip.js';
 
 /** private key */
 const $iterable = Symbol('iterable');
@@ -124,5 +125,19 @@ export class Iteration {
 	 */
 	skip(n) {
 		return Iteration.on(skip(this[$iterable], n));
+	}
+
+	/**
+	 * Combines each element of a iterable object.
+	 *
+	 * The first element of the array is the value of the first Iterable object.
+	 * The second element is the value of the second Iterable object.
+	 *
+	 * If one is shorter than the other, the return length is equal to that length.
+	 * @param {Iterable.<T>} another Iterable object.
+	 * @returns {Iteration.<Array.<T>>} The new Iteration. Cannot reuse.
+	 */
+	zip(another) {
+		return Iteration.on(zip(this[$iterable], another));
 	}
 }

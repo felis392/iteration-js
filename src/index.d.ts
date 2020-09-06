@@ -10,6 +10,7 @@ export declare class Iteration<T> {
 	peek(consumer: (v: T) => any): Iteration<T>;
 	skip(n: number): Iteration<T>;
 	takeWhile(predicate: (v: T) => boolean): Iteration<T>;
+	zip(another: Iterable<T>): Iteration<Array<T>>;
 }
 
 export declare function concat<T>(
@@ -77,3 +78,8 @@ export declare function rangeClosed(
 	start: number,
 	end: number
 ): Iterable<number>;
+
+export declare function zip<T>(
+	iterable: Iterable<T>,
+	another: Iterable<T>
+): Iterable<Array[T]>;

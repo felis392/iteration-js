@@ -12,3 +12,4 @@ export {range} from './range.js';
 export {rangeClosed} from './rangeClosed.js';
 export {takeWhile} from './takeWhile.js';
 export {skip} from './skip.js';
+export {zip} from './zip.js';
