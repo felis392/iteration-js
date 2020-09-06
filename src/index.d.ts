@@ -2,6 +2,7 @@ export declare class Iteration<T> {
 	static on<T>(iterable: Iterable<T>): Iteration<T>;
 	dropWhile(predicate: (v: T) => boolean): Iteration<T>;
 	forEach(consumer: (v: T) => any): void;
+	findFirst(predicate?: (v: T) => boolean): T?;
 	filter(predicate: (v: T) => boolean): Iteration<T>;
 	limit(maxSize: number): Iteration<T>;
 	map<S>(mapper: (v: T) => S): Iteration<S>;
@@ -19,6 +20,11 @@ export declare function filter<T>(
 	iterable: Iterable<T>,
 	predicate: (v: T) => boolean
 ): Iterable<T>;
+
+export declare function findFirst<T>(
+	iterable: Iterable<T>,
+	predicate?: (v: T) => boolean
+): T?;
 
 export declare function forEach<T>(
 	iterable: Iterable<T>,

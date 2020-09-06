@@ -5,7 +5,8 @@ import map from './map.js';
 import peek from './peek.js';
 import takeWhile from './takeWhile.js';
 import skip from './skip.js';
-import { limit } from './index.js';
+import limit from './limit.js';
+import findFirst from './findFirst.js';
 
 /** private key */
 const $iterable = Symbol('iterable');
@@ -47,6 +48,15 @@ export class Iteration {
 	 */
 	filter(predicate) {
 		return Iteration.on(filter(this[$iterable], predicate));
+	}
+
+	/**
+	 * Returns the first element that matches the condition.
+	 * @param {undefined | ((v: T) => boolean)} predicate If omit the condition, always true.
+	 * @return {?T} The first element that satisfies the condition. Null if not found.
+	 */
+	findFirst(predicate) {
+		return findFirst(this[$iterable], predicate);
 	}
 
 	/**

@@ -1,6 +1,7 @@
 export {Iteration} from './Iteration.js';
 export {dropWhile} from './dropWhile.js';
 export {filter} from './filter.js';
+export {findFirst} from './findFirst.js';
 export {forEach} from './forEach.js';
 export {iterate} from './iterate.js';
 export {limit} from './limit.js';
