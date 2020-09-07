@@ -8,7 +8,7 @@ export declare class Iteration<T> {
 	limit(maxSize: number): Iteration<T>;
 	map<U>(mapper: (v: T) => U): Iteration<U>;
 	peek(consumer: (v: T) => any): Iteration<T>;
-	reduce<U>(initial: U, accumulator: (result: U, element: T) => U): U;
+	reduce<U>(accumulator: (result: U, element: T) => U, initial?: U): U?;
 	skip(n: number): Iteration<T>;
 	takeWhile(predicate: (v: T) => boolean): Iteration<T>;
 	zip(another: Iterable<T>): Iteration<Array<T>>;
@@ -62,9 +62,9 @@ export declare function peek<T>(
 
 export declare function reduce<T,U>(
 	iterable: Iterable<T>,
-	initial: U,
-	accumulator: (result: U, element: T) => U
-): U;
+	accumulator: (result: U, element: T) => U,
+	initial?: U
+): U?;
 
 export declare function skip<T>(
 	iterable: Iterable<T>,

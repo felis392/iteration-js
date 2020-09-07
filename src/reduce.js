@@ -5,12 +5,12 @@
  * @template T element type
  * @template U result type
  * @param {Iterable.<T>} iterable Iterable object.
- * @param {U} initial Initial value.
  * @param {(result: U, element: T) => U} accumulator A function that transforms and calculates the result.
- * @returns {U} Result value.
+ * @param {?U} initial Initial value.
+ * @returns {?U} Result value.
  */
-export function reduce(iterable, initial, accumulator) {
-	let result = initial;
+export function reduce(iterable, accumulator, initial) {
+	let result = initial === undefined ? null : initial;
 	for (const element of iterable)
 		result = accumulator(result, element);
 	return result;

@@ -22,7 +22,7 @@ const { is } = assert;
  */
  export function test(param) {
 	const {expected, input, message} = param;
-	const actual = reduce(input.source, input.initial, input.accumulator);
+	const actual = reduce(input.source, input.accumulator, input.initial);
 	is(expected, actual, message);
 }
 
@@ -74,6 +74,14 @@ test.parameters = [
 		input: {
 			source: [1,2,3,4,5,4,2,3,1,2],
 			initial: [],
+			accumulator: (r, e) => [...r, e]
+		}
+	},
+	{
+		message: "Empty, omitted, returns null",
+		expected: null,
+		input: {
+			source: [],
 			accumulator: (r, e) => [...r, e]
 		}
 	}
