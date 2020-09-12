@@ -2,16 +2,19 @@
  * Concatenate iterable objects.
  * @template T element type
  * @param {Iterable.<T>} iterable Iterable object.
- * @param {Iterable.<T>} subsequent Iterable object.
+ * @param {Iterable.<Iterable.<T>>} subsequents Iterable objects.
  * @returns {Iterable.<T>} The new iterable. Cannot reuse.
  */
-export function concat(iterable, subsequent) {
-	return function* (source1, source2) {
+export function concat(iterable, ...subsequents) {
+	return function* (source1, sources) {
 		for (const i of source1)
 			yield i;
-		for (const i of source2)
-			yield i;
-	}(iterable, subsequent);
+		for (const source of sources)
+			if (source == null) continue;
+			else
+				for (const i of source)
+					yield i;
+	}(iterable, subsequents);
 }
 
 export default concat;

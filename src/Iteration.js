@@ -37,11 +37,11 @@ export class Iteration {
 
 	/**
 	 * Concatenate iterable objects.
-	 * @param {Iterable.<T>} subsequent Iterable object.
+	 * @param {Iterable.<Iterable.<T>>} subsequents Iterable objects.
 	 * @returns {Iteration.<T>} The new Iteration. Cannot reuse.
 	 */
-	concat(subsequent) {
-		return Iteration.on(concat(this[$iterable], subsequent));
+	concat(...subsequents) {
+		return Iteration.on(concat(this[$iterable], ...subsequents));
 	}
 
 	/**

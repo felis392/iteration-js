@@ -1,14 +1,14 @@
 export declare class Iteration<T> {
 	static on<T>(iterable: Iterable<T>): Iteration<T>;
-	concat(subsequent: Iterable<T>): Iteration<T>;
+	concat(...subsequent: Array<Iterable<T>>): Iteration<T>;
 	dropWhile(predicate: (v: T) => boolean): Iteration<T>;
 	forEach(consumer: (v: T) => any): void;
-	findFirst(predicate?: (v: T) => boolean): T?;
+	findFirst(predicate?: (v: T) => boolean): T|undefined;
 	filter(predicate: (v: T) => boolean): Iteration<T>;
 	limit(maxSize: number): Iteration<T>;
 	map<U>(mapper: (v: T) => U): Iteration<U>;
 	peek(consumer: (v: T) => any): Iteration<T>;
-	reduce<U>(accumulator: (result: U, element: T) => U, initial?: U): U?;
+	reduce<U>(accumulator: (result: U, element: T) => U, initial?: U): U|undefined;
 	skip(n: number): Iteration<T>;
 	takeWhile(predicate: (v: T) => boolean): Iteration<T>;
 	zip(another: Iterable<T>): Iteration<Array<T>>;
@@ -16,7 +16,7 @@ export declare class Iteration<T> {
 
 export declare function concat<T>(
 	iterable: Iterable<T>,
-	subsequent: Iterable<T>
+	...subsequents: Array<Iterable<T>>
 ): Iterable<T>;
 
 export declare function dropWhile<T>(
@@ -32,7 +32,7 @@ export declare function filter<T>(
 export declare function findFirst<T>(
 	iterable: Iterable<T>,
 	predicate?: (v: T) => boolean
-): T?;
+): T|undefined;
 
 export declare function forEach<T>(
 	iterable: Iterable<T>,
@@ -64,7 +64,7 @@ export declare function reduce<T,U>(
 	iterable: Iterable<T>,
 	accumulator: (result: U, element: T) => U,
 	initial?: U
-): U?;
+): U|undefined;
 
 export declare function skip<T>(
 	iterable: Iterable<T>,
@@ -89,4 +89,4 @@ export declare function rangeClosed(
 export declare function zip<T>(
 	iterable: Iterable<T>,
 	another: Iterable<T>
-): Iterable<Array[T]>;
+): Iterable<Array<T>>;
