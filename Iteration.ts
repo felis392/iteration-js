@@ -181,3 +181,5 @@ export class Iteration<T> {
     return Iteration.on(zip(this[$iterable], another));
   }
 }
+
+export default Iteration;

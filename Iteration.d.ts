@@ -102,4 +102,4 @@ export declare class Iteration<T> {
      */
     zip(another: Iterable<T>): Iteration<Array<T>>;
 }
-export {};
+export default Iteration;

@@ -26,8 +26,9 @@
     "typescript": "^4.0.2"
   },
   "scripts": {
-    "build": "run-s compile test",
+    "build": "run-s compile test type-index",
     "compile": "tsc",
-    "test": "run-tiny-esm-test-runner ./test/test-*.js"
+    "test": "run-tiny-esm-test-runner ./test/test-*.js",
+    "type-index": " grep --invert-match --no-filename --exclude=index.d.ts 'export default.*' *.d.ts > index.d.ts"
   }
 }

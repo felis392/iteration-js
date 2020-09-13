@@ -152,3 +152,4 @@ export class Iteration {
         return Iteration.on(zip(this[$iterable], another));
     }
 }
+export default Iteration;
