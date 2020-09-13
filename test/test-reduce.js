@@ -11,7 +11,7 @@ const { is } = assert;
  * @property {object} input
  * @property {Iterable.<T>} input.source
  * @property {?U} input.initial
- * @property {(result: U, element: T) => U} input.accumulator
+ * @property {(result: U, element: T, index: number) => U} input.accumulator
  * @property {string} message
  */
 
@@ -48,6 +48,15 @@ test.parameters = [
 			source: [1,2,3,4,5],
 			initial: "",
 			accumulator: (r, e) => r + String(e)
+		}
+	},
+	{
+		message: "Number to String join (use index)",
+		expected: "13579",
+		input: {
+			source: [1,2,3,4,5],
+			initial: "",
+			accumulator: (r, e, index) => r + String(e + index)
 		}
 	},
 	{

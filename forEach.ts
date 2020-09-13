@@ -3,15 +3,16 @@
  *
  * @template T element type
  * @param {Iterable.<T>} iterable Iterable object.
- * @param {(v: T) => void} consumer Consumer function.
+ * @param {(value: T, index: number) => void} consumer Consumer function. (index origin is Zero)
  * @returns {void} Nothing.
  */
 export function forEach<T>(
   iterable: Iterable<T>,
-  consumer: (v: T) => void
+  consumer: (value: T, index: number) => void
 ): void {
+  let index = 0;
   for (const i of iterable)
-    consumer(i);
+    consumer(i, index++);
 }
 
 export default forEach;

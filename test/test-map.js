@@ -10,7 +10,7 @@ const { is } = assert;
  * @property {Array.<S>} expectedList
  * @property {object} input
  * @property {Iterable.<T>} input.source
- * @property {(v: T) => S} input.transformer
+ * @property {(v: T, index: number) => S} input.transformer
  * @property {?string} message
  */
 
@@ -46,6 +46,14 @@ test.parameters = [
 		input: {
 			source: [1,2,3,4,5,6,7],
 			transformer: (n) => Math.pow(n, 2)
+		}
+	},
+	{
+		message: "number to number (power by index)",
+		expectedList: [1,2,9,64,625,7_776,117_649],
+		input: {
+			source: [1,2,3,4,5,6,7],
+			transformer: (n,index) => Math.pow(n, index)
 		}
 	},
 	{

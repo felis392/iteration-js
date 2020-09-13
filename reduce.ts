@@ -5,18 +5,19 @@
  * @template T element type
  * @template U result type
  * @param {Iterable.<T>} iterable Iterable object.
- * @param {(result: U | null, element: T) => U} accumulator A function that transforms and calculates the result.
+ * @param {(result: U | null, element: T, index: number) => U} accumulator A function that transforms and calculates the result.(index origin is Zero)
  * @param {?U} initial Initial value.
  * @returns {U | null} Result value.
  */
 export function reduce<T, U>(
   iterable: Iterable<T>,
-  accumulator: (result: U | null, element: T) => U,
+  accumulator: (result: U | null, element: T, index: number) => U,
   initial: U | null = null
 ): U | null {
+  let index = 0;
   let result = initial === undefined ? null : initial;
   for (const element of iterable)
-    result = accumulator(result, element);
+    result = accumulator(result, element, index++);
   return result;
 }
 

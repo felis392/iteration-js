@@ -9,7 +9,7 @@ const { is } = assert;
  * @property {Array.<T>} expectedList
  * @property {object} input
  * @property {Iterable.<T>} input.source
- * @property {(v: T) => boolean} input.predicate
+ * @property {(value: T, index: number) => boolean} input.predicate
  * @property {?string} message
  */
 
@@ -35,6 +35,14 @@ test.parameters = [
 		input: {
 			source: [1,2,3,4,5,6,7,8,9,0],
 			predicate: (n) => n % 2 === 0
+		}
+	},
+	{
+		message: "number (filter by index)",
+		expectedList: [1,4,7,0],
+		input: {
+			source: [1,2,3,4,5,6,7,8,9,0],
+			predicate: (_,index) => index % 3 === 0
 		}
 	},
 	{

@@ -38,6 +38,8 @@
     "reduce.ts",
     "skip.ts",
     "takeWhile.ts",
+    "toIterable.ts",
+    "toIterator.ts",
     "zip.ts"
   ]
 }

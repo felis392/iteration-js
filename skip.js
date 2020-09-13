@@ -1,3 +1,5 @@
+// @deno-types="./dropWhile.d.ts"
+import { dropWhile } from './dropWhile.js';
 /**
  * Remove n elements from the beginning.
  * @template T element type
@@ -6,13 +8,6 @@
  * @returns {Iterable.<T>} The new iterable. Cannot reuse.
  */
 export function skip(iterable, n) {
-    return function* (source, skips) {
-        let count = 0;
-        for (const i of source)
-            if (count < skips)
-                count++;
-            else
-                yield i;
-    }(iterable, n);
+    return dropWhile(iterable, (_, index) => index < n);
 }
 export default skip;

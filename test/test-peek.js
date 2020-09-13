@@ -17,9 +17,8 @@ const { is } = assert;
  */
 export function test(param) {
 	const {expectedList, input, message} = param;
-	let i = 0;
-	const output = peek(input, value => {
-		is(expectedList[i++], value, message);
+	const output = peek(input, (value, index) => {
+		is(expectedList[index], value, message);
 	});
 	is(expectedList, Array.from(output), message);
 }

@@ -9,7 +9,7 @@ const { is } = assert;
  * @property {Array.<T>} expectedList
  * @property {object} input
  * @property {Iterable.<T>} input.source
- * @property {(v: T) => boolean} input.predicate
+ * @property {(value: T, index: number) => boolean} input.predicate
  * @property {?string} message
  */
 
@@ -36,6 +36,14 @@ test.parameters = [
 		input: {
 			source: [1,2,3,4,5,6,7,8,9,0],
 			predicate: (n) => n < 5
+		}
+	},
+	{
+		message: "number (drop while index < 5)",
+		expectedList: [6,7,8,9,0],
+		input: {
+			source: [1,2,3,4,5,6,7,8,9,0],
+			predicate: (_, index) => index < 5
 		}
 	},
 	{

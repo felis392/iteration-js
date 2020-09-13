@@ -26,28 +26,28 @@ export declare class Iteration<T> {
     concat(...subsequents: Array<Iterable<T>>): Iteration<T>;
     /**
      * Discards the element while the condition is met. And it returns the rest.
-     * @param {(v: T) => boolean} predicate Predicate to determine whether to discard the value.
+     * @param {(value: T, index: number) => boolean} predicate Predicate to determine whether to discard the value.(index origin is Zero)
      * @returns {Iteration.<T>} The new Iteration. Cannot reuse.
      */
-    dropWhile(predicate: (v: T) => boolean): Iteration<T>;
+    dropWhile(predicate: (value: T, index: number) => boolean): Iteration<T>;
     /**
      * Returns only the elements that satisfy the condition.
-     * @param {(v: T) => boolean} predicate A predicate that determines if a value is legal.
+     * @param {(value: T, index: number) => boolean} predicate A predicate that determines if a value is legal.(index origin is Zero)
      * @returns {Iteration.<T>} The new Iteration. Cannot reuse.
      */
-    filter(predicate: (v: T) => boolean): Iteration<T>;
+    filter(predicate: (value: T, index: number) => boolean): Iteration<T>;
     /**
      * Returns the first element that matches the condition.
-     * @param {undefined | ((v: T) => boolean)} predicate If omit the condition, always true.
+     * @param {undefined | ((value: T, index: number) => boolean)} predicate If omit the condition, always true.(index origin is Zero)
      * @return {?T} The first element that satisfies the condition. Null if not found.
      */
-    findFirst(predicate: (v: T) => boolean): T | null;
+    findFirst(predicate?: (value: T, index: number) => boolean): T | null;
     /**
      * Perform the iteration.
-     * @param {(v: T) => void} consumer Consumer function.
+     * @param {(value: T, index: number) => void} consumer Consumer function. (index origin is Zero)
      * @returns {void} Nothing.
      */
-    forEach(consumer: (v: T) => void): void;
+    forEach(consumer: (value: T, index: number) => void): void;
     /**
      * Limit the number of elements.
      * @param {number} maxSize Maximum number of elements.
@@ -57,27 +57,27 @@ export declare class Iteration<T> {
     /**
      * Maps the element to another type.
      * @template U another type.
-     * @param {(v: T) => U} mapper Transformer function.
+     * @param {(value: T, index: number) => S} mapper Transformer function.(index origin is Zero)
      * @returns {Iteration.<U>} The new Iteration. Cannot reuse.
      */
-    map<U>(mapper: (v: T) => U): Iteration<U>;
+    map<U>(mapper: (value: T, index: number) => U): Iteration<U>;
     /**
      * Apply the consumption function to the element.
      *
      * This is intended for logging during debugging, for example.
-     * @param {(v: T) => any} consumer Consumer function.
+     * @param {(value: T, index: number) => void} consumer Consumer function. (index origin is Zero)
      * @returns {Iteration.<T>} The new Iteration. Cannot reuse.
      */
-    peek(consumer: (v: T) => void): Iteration<T>;
+    peek(consumer: (value: T, index: number) => void): Iteration<T>;
     /**
      * Performs a reduction on the elements of a iterable object using the initial value,
      * cumulative, and associative functions.
      * @template U result type.
-     * @param {(result: U | null, element: T) => U} accumulator A function that transforms and calculates the result.
+     * @param {(result: U | null, element: T, index: number) => U} accumulator A function that transforms and calculates the result.(index origin is Zero)
      * @param {?U} initial Initial value.
      * @returns {U | null} Result value.
      */
-    reduce<U>(accumulator: (result: U | null, element: T) => U, initial?: U | null): U | null;
+    reduce<U>(accumulator: (result: U | null, element: T, index: number) => U, initial?: U | null): U | null;
     /**
      * Remove n elements from the beginning.
      * @param {number} n The number of elements to skip from the beginning.
@@ -86,10 +86,20 @@ export declare class Iteration<T> {
     skip(n: number): Iteration<T>;
     /**
      * Returns the elements until the condition is no longer met. Discard the rest.
-     * @param {(v: T) => boolean} predicate A predicate that determines whether the value is still returned.
+     * @param {(value: T, index: number) => boolean} predicate A predicate that determines whether the value is still returned.(index origin is Zero)
      * @returns {Iteration.<T>} The new Iteration. Cannot reuse.
      */
-    takeWhile(predicate: (v: T) => boolean): Iteration<T>;
+    takeWhile(predicate: (value: T, index: number) => boolean): Iteration<T>;
+    /**
+    * Convert to an Iterable object.
+    * @returns {Iterable<T>} The new Iterable. Cannot reuse.
+    */
+    toIterable(): Iterable<T>;
+    /**
+    * Convert to an Iterator object.
+    * @returns {Iterator<T, undefined, unknown>} The new Iterator. Cannot reuse.
+    */
+    toIterator(): Iterator<T, undefined, unknown>;
     /**
      * Combines each element of a iterable object.
      *
@@ -115,28 +125,28 @@ export declare function concat<T>(iterable: Iterable<T>, ...subsequents: Array<I
  *
  * @template T element type
  * @param {Iterable.<T>} iterable Iterable object.
- * @param {(v: T) => boolean} predicate Predicate to determine whether to discard the value.
+ * @param {(value: T, index: number) => boolean} predicate Predicate to determine whether to discard the value.(index origin is Zero)
  * @returns {Iterable.<T>} The new iterable. Cannot reuse.
  */
-export declare function dropWhile<T>(iterable: Iterable<T>, predicate: (v: T) => boolean): Iterable<T>;
+export declare function dropWhile<T>(iterable: Iterable<T>, predicate: (value: T, index: number) => boolean): Iterable<T>;
 /**
  * Returns only the elements that satisfy the condition.
  *
  * @template T element type
  * @param {Iterable.<T>} iterable Iterable object.
- * @param {(v: T) => boolean} predicate A predicate that determines if a value is legal.
+ * @param {(value: T, index: number) => boolean} predicate A predicate that determines if a value is legal.(index origin is Zero)
  * @returns {Iterable.<T>} The new iterable. Cannot reuse.
  */
-export declare function filter<T>(iterable: Iterable<T>, predicate: (v: T) => boolean): Iterable<T>;
+export declare function filter<T>(iterable: Iterable<T>, predicate: (value: T, index: number) => boolean): Iterable<T>;
 /**
  * Returns the first element that matches the condition.
  *
  * @template T element type
  * @param {Iterable.<T>} iterable Iterable object.
- * @param {undefined | ((v: T) => boolean)} predicate If omit the condition, always true.
+ * @param {undefined | ((value: T, index: number) => boolean)} predicate If omit the condition, always true.(index origin is Zero)
  * @return {?T} The first element that satisfies the condition. Null if not found.
  */
-export declare function findFirst<T>(iterable: Iterable<T>, predicate?: (v: T) => boolean): T | null;
+export declare function findFirst<T>(iterable: Iterable<T>, predicate?: (value: T, index: number) => boolean): T | null;
 /**
  * Flatten nested Iterable objects at any depth.
  * @template T
@@ -149,10 +159,10 @@ export declare function flatten<T>(iterable: Iterable<T | Iterable<unknown>>, de
  *
  * @template T element type
  * @param {Iterable.<T>} iterable Iterable object.
- * @param {(v: T) => void} consumer Consumer function.
+ * @param {(value: T, index: number) => void} consumer Consumer function. (index origin is Zero)
  * @returns {void} Nothing.
  */
-export declare function forEach<T>(iterable: Iterable<T>, consumer: (v: T) => void): void;
+export declare function forEach<T>(iterable: Iterable<T>, consumer: (value: T, index: number) => void): void;
 /**
  * Returns a iterable, generated by iteratively applying the specified next function
  * to the initial elements, subject to the given hasNext predicate being satisfied.
@@ -179,20 +189,20 @@ export declare function limit<T>(iterable: Iterable<T>, maxSize: number): Iterab
  * @template T element type
  * @template S another type
  * @param {Iterable.<T>} iterable Iterable object.
- * @param {(v: T) => S} mapper Transformer function.
+ * @param {(value: T, index: number) => S} mapper Transformer function.(index origin is Zero)
  * @returns {Iterable.<S>} The new iterable. Cannot reuse.
  */
-export declare function map<T, U>(iterable: Iterable<T>, mapper: (v: T) => U): Iterable<U>;
+export declare function map<T, U>(iterable: Iterable<T>, mapper: (value: T, index: number) => U): Iterable<U>;
 /**
  * Apply the consumption function to the element.
  *
  * This is intended for logging during debugging, for example.
  * @template T element type
  * @param {Iterable.<T>} iterable Iterable object.
- * @param {(v: T) => void} consumer Consumer function.
+ * @param {(value: T, index: number) => void} consumer Consumer function. (index origin is Zero)
  * @returns {Iterable.<T>} The new iterable. Cannot reuse.
  */
-export declare function peek<T>(iterable: Iterable<T>, consumer: (v: T) => void): Iterable<T>;
+export declare function peek<T>(iterable: Iterable<T>, consumer: (value: T, index: number) => void): Iterable<T>;
 /**
  * It is a sequence that repeats in steps from the start value to the end value.
  * @param {number} start First value. Should be an integer.
@@ -214,11 +224,11 @@ export declare function rangeClosed(start: number, end: number): Iterable<number
  * @template T element type
  * @template U result type
  * @param {Iterable.<T>} iterable Iterable object.
- * @param {(result: U | null, element: T) => U} accumulator A function that transforms and calculates the result.
+ * @param {(result: U | null, element: T, index: number) => U} accumulator A function that transforms and calculates the result.(index origin is Zero)
  * @param {?U} initial Initial value.
  * @returns {U | null} Result value.
  */
-export declare function reduce<T, U>(iterable: Iterable<T>, accumulator: (result: U | null, element: T) => U, initial?: U | null): U | null;
+export declare function reduce<T, U>(iterable: Iterable<T>, accumulator: (result: U | null, element: T, index: number) => U, initial?: U | null): U | null;
 /**
  * Remove n elements from the beginning.
  * @template T element type
@@ -232,10 +242,24 @@ export declare function skip<T>(iterable: Iterable<T>, n: number): Iterable<T>;
  *
  * @template T element type
  * @param {Iterable.<T>} iterable Iterable object.
- * @param {(v: T) => boolean} predicate A predicate that determines whether the value is still returned.
+ * @param {(value: T, index: number) => boolean} predicate A predicate that determines whether the value is still returned.(index origin is Zero)
  * @returns {Iterable.<T>} The new iterable. Cannot reuse.
  */
-export declare function takeWhile<T>(iterable: Iterable<T>, predicate: (v: T) => boolean): Iterable<T>;
+export declare function takeWhile<T>(iterable: Iterable<T>, predicate: (value: T, index: number) => boolean): Iterable<T>;
+/**
+ * Convert an Iterable object to an Iterable object.
+ * @template T element type.
+ * @param {Iterable.<T>} iterable Iterable object.
+ * @returns {Iterable<T>} The new Iterable. Cannot reuse.
+ */
+export declare function toIterable<T>(iterable: Iterable<T>): Iterable<T>;
+/**
+ * Convert an Iterable object to an Iterator object.
+ * @template T element type.
+ * @param {Iterable.<T>} iterable Iterable object.
+ * @returns {Iterator<T, undefined, unknown>} The new Iterator. Cannot reuse.
+ */
+export declare function toIterator<T>(iterable: Iterable<T>): Iterator<T, undefined, unknown>;
 /**
  * Combines each element of a iterable object.
  *

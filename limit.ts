@@ -1,3 +1,6 @@
+// @deno-types="./takeWhile.d.ts"
+import { takeWhile } from './takeWhile.js';
+
 /**
  * Limit the number of eleme.js.
  * @template T element type
@@ -9,16 +12,7 @@ export function limit<T>(
   iterable: Iterable<T>,
   maxSize: number
 ): Iterable<T> {
-  return function* (source, cap) {
-    let count = 0;
-    for (const i of source)
-      if (count < cap) {
-        count++;
-        yield i;
-      }
-      else
-        break;
-  }(iterable, maxSize);
+  return takeWhile(iterable, (_, index) => index < maxSize);
 }
 
 export default limit;

@@ -5,9 +5,9 @@
  * @template T element type
  * @template U result type
  * @param {Iterable.<T>} iterable Iterable object.
- * @param {(result: U | null, element: T) => U} accumulator A function that transforms and calculates the result.
+ * @param {(result: U | null, element: T, index: number) => U} accumulator A function that transforms and calculates the result.(index origin is Zero)
  * @param {?U} initial Initial value.
  * @returns {U | null} Result value.
  */
-export declare function reduce<T, U>(iterable: Iterable<T>, accumulator: (result: U | null, element: T) => U, initial?: U | null): U | null;
+export declare function reduce<T, U>(iterable: Iterable<T>, accumulator: (result: U | null, element: T, index: number) => U, initial?: U | null): U | null;
 export default reduce;

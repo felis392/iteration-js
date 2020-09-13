@@ -9,7 +9,7 @@ const { is } = assert;
  * @property {?T} expected
  * @property {object} input
  * @property {Iterable.<T>} input.source
- * @property {(v: T) => boolean} input.predicate
+ * @property {(v: T, index: number) => boolean} input.predicate
  * @property {string} message
  */
 
@@ -34,6 +34,14 @@ export function test(param) {
 		input: {
 			source: [2,4,5,36,4,27,92,54,23,31,54],
 			predicate: (n) => n % 6 === 0 && n % 9 === 0
+		}
+	},
+	{
+		message: "found by index(number)",
+		expected: 92,
+		input: {
+			source: [2,4,5,36,4,27,92,54,23,31,54],
+			predicate: (_, index) => index === 6
 		}
 	},
 	{

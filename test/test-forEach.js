@@ -17,9 +17,8 @@ const { is } = assert;
  */
 export function test(param) {
 	const {expectedList, input, message} = param;
-	let i = 0;
-	forEach(input, value => {
-		is(expectedList[i++], value, message);
+	forEach(input, (value, index) => {
+		is(expectedList[index], value, message);
 	});
 }
 

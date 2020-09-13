@@ -3,18 +3,19 @@
  *
  * @template T element type
  * @param {Iterable.<T>} iterable Iterable object.
- * @param {(v: T) => boolean} predicate Predicate to determine whether to discard the value.
+ * @param {(value: T, index: number) => boolean} predicate Predicate to determine whether to discard the value.(index origin is Zero)
  * @returns {Iterable.<T>} The new iterable. Cannot reuse.
  */
 export function dropWhile<T>(
   iterable: Iterable<T>,
-  predicate: (v: T) => boolean
+  predicate: (value: T, index: number) => boolean
 ): Iterable<T> {
   return function* (source, dropCondtion) {
+    let index = 0;
     let matched = true;
     for (const i of source) {
       if (matched)
-        matched = dropCondtion(i);
+        matched = dropCondtion(i, index++);
       if (!matched)
         yield i;
     }

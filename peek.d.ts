@@ -4,8 +4,8 @@
  * This is intended for logging during debugging, for example.
  * @template T element type
  * @param {Iterable.<T>} iterable Iterable object.
- * @param {(v: T) => void} consumer Consumer function.
+ * @param {(value: T, index: number) => void} consumer Consumer function. (index origin is Zero)
  * @returns {Iterable.<T>} The new iterable. Cannot reuse.
  */
-export declare function peek<T>(iterable: Iterable<T>, consumer: (v: T) => void): Iterable<T>;
+export declare function peek<T>(iterable: Iterable<T>, consumer: (value: T, index: number) => void): Iterable<T>;
 export default peek;
