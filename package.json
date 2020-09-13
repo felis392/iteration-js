@@ -15,16 +15,18 @@
     "url": "https://github.com/felis392/iteration-js",
     "type": "git"
   },
+  "engines": {
+    "node": ">= 12",
+    "npm": ">= 6.12"
+  },
   "devDependencies": {
     "@types/core-js": "^2.5.4",
-    "tiny-esm-test-runner": "^1.2.2"
+    "tiny-esm-test-runner": "^1.2.2",
+    "typescript": "^4.0.2"
   },
   "scripts": {
     "build": "yarn run compile & yarn run test",
     "compile": "tsc",
     "test": "run-tiny-esm-test-runner ./test/test-*.js"
-  },
-  "dependencies": {
-    "typescript": "^4.0.2"
   }
 }
