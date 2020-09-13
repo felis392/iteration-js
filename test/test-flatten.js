@@ -1,4 +1,4 @@
-import { flatten } from '../src/flatten.js';
+import { flatten } from '../flatten.js';
 import { assert } from 'tiny-esm-test-runner';
 const { is } = assert;
 

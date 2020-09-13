@@ -1,4 +1,4 @@
-import { iterate } from '../src/iterate.js';
+import { iterate } from '../iterate.js';
 import { assert } from 'tiny-esm-test-runner';
 const { is } = assert;
 

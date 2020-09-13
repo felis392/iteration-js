@@ -1,4 +1,4 @@
-import { peek } from '../src/peek.js';
+import { peek } from '../peek.js';
 import { assert } from 'tiny-esm-test-runner';
 const { is } = assert;
 

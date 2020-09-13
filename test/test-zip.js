@@ -1,4 +1,4 @@
-import { zip } from '../src/zip.js';
+import { zip } from '../zip.js';
 import { assert } from 'tiny-esm-test-runner';
 const { is } = assert;
 

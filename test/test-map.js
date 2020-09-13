@@ -1,4 +1,4 @@
-import { map } from '../src/map.js';
+import { map } from '../map.js';
 import { assert } from 'tiny-esm-test-runner';
 const { is } = assert;
 

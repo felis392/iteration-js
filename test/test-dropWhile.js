@@ -1,4 +1,4 @@
-import { dropWhile } from '../src/dropWhile.js';
+import { dropWhile } from '../dropWhile.js';
 import { assert } from 'tiny-esm-test-runner';
 const { is } = assert;
 

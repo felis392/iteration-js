@@ -1,4 +1,4 @@
-import { concat } from '../src/concat.js';
+import { concat } from '../concat.js';
 import { assert } from 'tiny-esm-test-runner';
 const { is } = assert;
 

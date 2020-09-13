@@ -1,4 +1,4 @@
-import { forEach } from '../src/forEach.js';
+import { forEach } from '../forEach.js';
 import { assert } from 'tiny-esm-test-runner';
 const { is } = assert;
 

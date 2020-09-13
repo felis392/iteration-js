@@ -1,4 +1,4 @@
-import { range } from '../src/range.js';
+import { range } from '../range.js';
 import { assert } from 'tiny-esm-test-runner';
 const { is } = assert;
 

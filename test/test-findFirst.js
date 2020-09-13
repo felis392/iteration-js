@@ -1,4 +1,4 @@
-import { findFirst } from '../src/findFirst.js';
+import { findFirst } from '../findFirst.js';
 import { assert } from 'tiny-esm-test-runner';
 const { is } = assert;
 

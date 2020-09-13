@@ -1,4 +1,4 @@
-import { takeWhile } from '../src/takeWhile.js';
+import { takeWhile } from '../takeWhile.js';
 import { assert } from 'tiny-esm-test-runner';
 const { is } = assert;
 

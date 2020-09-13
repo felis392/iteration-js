@@ -1,4 +1,4 @@
-import { skip } from '../src/skip.js';
+import { skip } from '../skip.js';
 import { assert } from 'tiny-esm-test-runner';
 const { is } = assert;
 
