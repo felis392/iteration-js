@@ -21,11 +21,12 @@
   },
   "devDependencies": {
     "@types/core-js": "^2.5.4",
+    "npm-run-all": "4.1.5",
     "tiny-esm-test-runner": "^1.2.2",
     "typescript": "^4.0.2"
   },
   "scripts": {
-    "build": "yarn run compile & yarn run test",
+    "build": "run-s compile test",
     "compile": "tsc",
     "test": "run-tiny-esm-test-runner ./test/test-*.js"
   }
