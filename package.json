@@ -1,28 +1,30 @@
 {
-	"name": "@felis392/iteration-js",
-	"description": "Utilities for JavaScript Iterable objects.",
-	"version": "0.4.0",
-	"main": "./index.js",
-	"typings": "./index.d.ts",
-	"types": "./index.d.ts",
-	"author": "felis392",
-	"license": "MIT",
-	"type": "module",
-	"private": true,
-	"homepage": "https://github.com/felis392/iteration-js",
-	"bugs": "https://github.com/felis392/iteration-js/issues",
-	"repository": {
-		"url": "https://github.com/felis392/iteration-js",
-		"type": "git"
-	},
-	"devDependencies": {
-		"@types/core-js": "^2.5.4",
-		"tiny-esm-test-runner": "^1.2.2"
-	},
-	"scripts": {
-		"test": "run-tiny-esm-test-runner ./test/test-*.js"
-	},
-	"dependencies": {
-		"typescript": "^4.0.2"
-	}
+  "name": "@felis392/iteration-js",
+  "description": "Utilities for JavaScript Iterable objects.",
+  "version": "0.4.0",
+  "main": "./index.js",
+  "typings": "./index.d.ts",
+  "types": "./index.d.ts",
+  "author": "felis392",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "homepage": "https://github.com/felis392/iteration-js",
+  "bugs": "https://github.com/felis392/iteration-js/issues",
+  "repository": {
+    "url": "https://github.com/felis392/iteration-js",
+    "type": "git"
+  },
+  "devDependencies": {
+    "@types/core-js": "^2.5.4",
+    "tiny-esm-test-runner": "^1.2.2"
+  },
+  "scripts": {
+    "build": "yarn run compile & yarn run test",
+    "compile": "tsc",
+    "test": "run-tiny-esm-test-runner ./test/test-*.js"
+  },
+  "dependencies": {
+    "typescript": "^4.0.2"
+  }
 }
