@@ -10,19 +10,5 @@
  * @param {Iterable.<T>} another Iterable object.
  * @returns {Iterable.<Array.<T>>} The new iterable. Cannot reuse.
  */
-export function zip(iterable, another) {
-    function* gen(source) {
-        for (const i of source)
-            yield i;
-    }
-    return function* (source1, source2) {
-        while (true) {
-            const n1 = source1.next();
-            const n2 = source2.next();
-            if (n1.done || n2.done)
-                break;
-            yield [n1.value, n2.value];
-        }
-    }(gen(iterable), gen(another));
-}
+export declare function zip<T>(iterable: Iterable<T>, another: Iterable<T>): Iterable<Array<T>>;
 export default zip;

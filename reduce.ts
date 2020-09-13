@@ -9,10 +9,15 @@
  * @param {?U} initial Initial value.
  * @returns {U | null} Result value.
  */
-export function reduce(iterable, accumulator, initial = null) {
-    let result = initial === undefined ? null : initial;
-    for (const element of iterable)
-        result = accumulator(result, element);
-    return result;
+export function reduce<T, U>(
+  iterable: Iterable<T>,
+  accumulator: (result: U | null, element: T) => U,
+  initial: U | null = null
+): U | null {
+  let result = initial === undefined ? null : initial;
+  for (const element of iterable)
+    result = accumulator(result, element);
+  return result;
 }
+
 export default reduce;

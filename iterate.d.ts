@@ -9,10 +9,5 @@
  * @param {(v: T) => T} next A function applied to the previous element to create a new element
  * @returns {Iterable.<T>} the new iterable.
  */
-export function iterate(seed, hasNext, next) {
-    return function* (seed, hasNext, next) {
-        for (let v = seed; hasNext(v); v = next(v))
-            yield v;
-    }(seed, hasNext, next);
-}
+export declare function iterate<T>(seed: T, hasNext: (v: T) => boolean, next: (v: T) => T): Iterable<T>;
 export default iterate;

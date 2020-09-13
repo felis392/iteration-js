@@ -6,12 +6,5 @@
  * @param {(v: T) => void} consumer Consumer function.
  * @returns {void} Nothing.
  */
-export function forEach<T>(
-  iterable: Iterable<T>,
-  consumer: (v: T) => void
-): void {
-  for (const i of iterable)
-    consumer(i);
-}
-
+export declare function forEach<T>(iterable: Iterable<T>, consumer: (v: T) => void): void;
 export default forEach;

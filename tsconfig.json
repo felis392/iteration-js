@@ -7,6 +7,7 @@
     ],
     "downlevelIteration": true,
     "strict": true,
+    "declaration": true,
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -24,8 +25,19 @@
     "concat.ts",
     "dropWhile.ts",
     "filter.ts",
+    "findFirst.ts",
+    "flatten.ts",
     "forEach.ts",
     "iterate.ts",
-    "range.ts"
+    "Iteration.ts",
+    "limit.ts",
+    "map.ts",
+    "peek.ts",
+    "range.ts",
+    "rangeClosed.ts",
+    "reduce.ts",
+    "skip.ts",
+    "takeWhile.ts",
+    "zip.ts"
   ]
 }
