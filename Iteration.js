@@ -10,6 +10,8 @@ import dropWhile from './dropWhile.js';
 import filter from './filter.js';
 // @deno-types="./findFirst.d.ts"
 import findFirst from './findFirst.js';
+// @deno-types="./flatMap.d.ts"
+import flatMap from './flatMap.js';
 // @deno-types="./forEach.d.ts"
 import forEach from './forEach.js';
 // @deno-types="./limit.d.ts"
@@ -101,6 +103,17 @@ export class Iteration {
      */
     findFirst(predicate) {
         return findFirst(this[$iterable], predicate);
+    }
+    /**
+    * Maps the element to another type and flat.
+    *
+    * @template U another type
+    * @param {Iterable.<T>} iterable Iterable object.
+    * @param {(value: T, index: number) => Iterable.<U>} mapper Transformer function.(index origin is Zero)
+    * @returns {Iteration.<U>} The new Iteration. Cannot reuse.
+    */
+    flatMap(mapper) {
+        return Iteration.on(flatMap(this[$iterable], mapper));
     }
     /**
      * Perform the iteration.

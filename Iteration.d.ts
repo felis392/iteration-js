@@ -57,6 +57,15 @@ export declare class Iteration<T> {
      */
     findFirst(predicate?: (value: T, index: number) => boolean): T | null;
     /**
+    * Maps the element to another type and flat.
+    *
+    * @template U another type
+    * @param {Iterable.<T>} iterable Iterable object.
+    * @param {(value: T, index: number) => Iterable.<U>} mapper Transformer function.(index origin is Zero)
+    * @returns {Iteration.<U>} The new Iteration. Cannot reuse.
+    */
+    flatMap<U>(mapper: (value: T, index: number) => Iterable<U>): Iteration<U>;
+    /**
      * Perform the iteration.
      * @param {(value: T, index: number) => void} consumer Consumer function. (index origin is Zero)
      * @returns {void} Nothing.

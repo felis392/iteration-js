@@ -4,5 +4,5 @@
  * @param {Iterable.<T|Iterable.<any>>} iterable
  * @param {number} depth
  */
-export declare function flatten<T>(iterable: Iterable<T | Iterable<unknown>>, depth?: number): Iterable<T>;
+export declare function flatten<T>(iterable: Iterable<T | Iterable<any>>, depth?: number): Iterable<T>;
 export default flatten;

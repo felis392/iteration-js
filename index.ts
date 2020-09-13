@@ -19,6 +19,9 @@ export {filter} from './filter.js';
 // @deno-types="./findFirst.d.ts"
 export {findFirst} from './findFirst.js';
 
+// @deno-types="./flatMap.d.ts"
+export {flatMap} from './flatMap.js';
+
 // @deno-types="./forEach.d.ts"
 export {forEach} from './forEach.js';
 

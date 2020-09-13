@@ -28,6 +28,7 @@
     "dropWhile.ts",
     "filter.ts",
     "findFirst.ts",
+    "flatMap.ts",
     "flatten.ts",
     "forEach.ts",
     "iterate.ts",

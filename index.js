@@ -5,6 +5,7 @@ export {concat} from './concat.js';
 export {dropWhile} from './dropWhile.js';
 export {filter} from './filter.js';
 export {findFirst} from './findFirst.js';
+export {flatMap} from './flatMap.js';
 export {forEach} from './forEach.js';
 export {iterate} from './iterate.js';
 export {limit} from './limit.js';

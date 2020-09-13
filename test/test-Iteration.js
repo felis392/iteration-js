@@ -147,6 +147,22 @@ export function test_findFirst_3() {
   is(expected, actual);
 }
 
+export function test_flatMap_1() {
+  const expected = [
+    1, 0, 1,
+    2, 1, 4,
+    3, 2, 7,
+    4, 3, 10,
+    5, 4, 13
+  ];
+  const actual = Array.from(
+    Iteration.on(rangeClosed(1,5))
+    .flatMap((value, index) => [value, index, value + index * 2])
+    .toIterator()
+  );
+  is(expected, actual);
+}
+
 export function test_forEach() {
   const expected = [1,2,3,4,5,6,7];
   Iteration.on(rangeClosed(1,7))

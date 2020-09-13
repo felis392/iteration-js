@@ -57,6 +57,15 @@ export declare class Iteration<T> {
      */
     findFirst(predicate?: (value: T, index: number) => boolean): T | null;
     /**
+    * Maps the element to another type and flat.
+    *
+    * @template U another type
+    * @param {Iterable.<T>} iterable Iterable object.
+    * @param {(value: T, index: number) => Iterable.<U>} mapper Transformer function.(index origin is Zero)
+    * @returns {Iteration.<U>} The new Iteration. Cannot reuse.
+    */
+    flatMap<U>(mapper: (value: T, index: number) => Iterable<U>): Iteration<U>;
+    /**
      * Perform the iteration.
      * @param {(value: T, index: number) => void} consumer Consumer function. (index origin is Zero)
      * @returns {void} Nothing.
@@ -180,12 +189,22 @@ export declare function filter<T>(iterable: Iterable<T>, predicate: (value: T, i
  */
 export declare function findFirst<T>(iterable: Iterable<T>, predicate?: (value: T, index: number) => boolean): T | null;
 /**
+ * Maps the element to another type and flat.
+ *
+ * @template T element type
+ * @template U another type
+ * @param {Iterable.<T>} iterable Iterable object.
+ * @param {(value: T, index: number) => Iterable.<U>} mapper Transformer function.(index origin is Zero)
+ * @returns {Iterable.<U>} The new iterable. Cannot reuse.
+ */
+export declare function flatMap<T, U>(iterable: Iterable<T>, mapper: (value: T, index: number) => Iterable<U>): Iterable<U>;
+/**
  * Flatten nested Iterable objects at any depth.
  * @template T
  * @param {Iterable.<T|Iterable.<any>>} iterable
  * @param {number} depth
  */
-export declare function flatten<T>(iterable: Iterable<T | Iterable<unknown>>, depth?: number): Iterable<T>;
+export declare function flatten<T>(iterable: Iterable<T | Iterable<any>>, depth?: number): Iterable<T>;
 /**
  * Perform the iteration.
  *
