@@ -1,3 +1,7 @@
+// @deno-types="./allMatch.d.ts"
+import allMatch from './allMatch.js';
+// @deno-types="./anyMatch.d.ts"
+import anyMatch from './anyMatch.js';
 // @deno-types="./concat.d.ts"
 import concat from './concat.js';
 // @deno-types="./dropWhile.d.ts"
@@ -47,6 +51,24 @@ export class Iteration {
      */
     static on(iterable) {
         return new Iteration(iterable);
+    }
+    /**
+    * Check if all the elements match.
+    *
+    * @param {(value: T, index: number) => boolean} predicate Predicate function used to inspect elements.(index origin is Zero)
+    * @return {boolean} Returns true if all elements meet the condition. Returns true whenever Iterable is empty.
+    */
+    allMatch(predicate) {
+        return allMatch(this[$iterable], predicate);
+    }
+    /**
+    * Check if any of the elements match.
+    *
+    * @param {(value: T, index: number) => boolean} predicate Predicate function used to inspect elements.(index origin is Zero)
+    * @return {boolean} Returns true if either element meets the conditions. Returns false whenever Iterable is empty.
+    */
+    anyMatch(predicate) {
+        return anyMatch(this[$iterable], predicate);
     }
     /**
      * Concatenate iterable objects.

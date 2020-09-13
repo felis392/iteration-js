@@ -1,4 +1,6 @@
 export {Iteration} from './Iteration.js';
+export {allMatch} from './allMatch.js';
+export {anyMatch} from './anyMatch.js';
 export {concat} from './concat.js';
 export {dropWhile} from './dropWhile.js';
 export {filter} from './filter.js';
@@ -13,4 +15,6 @@ export {rangeClosed} from './rangeClosed.js';
 export {reduce} from './reduce.js';
 export {skip} from './skip.js';
 export {takeWhile} from './takeWhile.js';
+export {toIterable} from './toIterable.js';
+export {toIterator} from './toIterator.js';
 export {zip} from './zip.js';

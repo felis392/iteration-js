@@ -22,6 +22,8 @@
     "./node_modules"
   ],
   "files": [
+    "allMatch.ts",
+    "anyMatch.ts",
     "concat.ts",
     "dropWhile.ts",
     "filter.ts",

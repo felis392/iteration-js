@@ -19,6 +19,20 @@ export declare class Iteration<T> {
      */
     static on<S>(iterable: Iterable<S>): Iteration<S>;
     /**
+    * Check if all the elements match.
+    *
+    * @param {(value: T, index: number) => boolean} predicate Predicate function used to inspect elements.(index origin is Zero)
+    * @return {boolean} Returns true if all elements meet the condition. Returns true whenever Iterable is empty.
+    */
+    allMatch(predicate: (value: T, index: number) => boolean): boolean;
+    /**
+    * Check if any of the elements match.
+    *
+    * @param {(value: T, index: number) => boolean} predicate Predicate function used to inspect elements.(index origin is Zero)
+    * @return {boolean} Returns true if either element meets the conditions. Returns false whenever Iterable is empty.
+    */
+    anyMatch(predicate: (value: T, index: number) => boolean): boolean;
+    /**
      * Concatenate iterable objects.
      * @param {Iterable.<Iterable.<T>>} subsequents Iterable objects.
      * @returns {Iteration.<T>} The new Iteration. Cannot reuse.

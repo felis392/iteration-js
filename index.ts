@@ -1,6 +1,12 @@
 // @deno-types="./Iteration.d.ts"
 export {Iteration} from './Iteration.js';
 
+// @deno-types="./allMatch.d.ts"
+export {allMatch} from './allMatch.js';
+
+// @deno-types="./anyMatch.d.ts"
+export {anyMatch} from './anyMatch.js';
+
 // @deno-types="./concat.d.ts"
 export {concat} from './concat.js';
 
@@ -42,6 +48,12 @@ export {skip} from './skip.js';
 
 // @deno-types="./takeWhile.d.ts"
 export {takeWhile} from './takeWhile.js';
+
+// @deno-types="./toIterable.d.ts"
+export {toIterable} from './toIterable.js';
+
+// @deno-types="./toIterator.d.ts"
+export {toIterator} from './toIterator.js';
 
 // @deno-types="./zip.d.ts"
 export {zip} from './zip.js';

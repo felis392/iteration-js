@@ -19,6 +19,20 @@ export declare class Iteration<T> {
      */
     static on<S>(iterable: Iterable<S>): Iteration<S>;
     /**
+    * Check if all the elements match.
+    *
+    * @param {(value: T, index: number) => boolean} predicate Predicate function used to inspect elements.(index origin is Zero)
+    * @return {boolean} Returns true if all elements meet the condition. Returns true whenever Iterable is empty.
+    */
+    allMatch(predicate: (value: T, index: number) => boolean): boolean;
+    /**
+    * Check if any of the elements match.
+    *
+    * @param {(value: T, index: number) => boolean} predicate Predicate function used to inspect elements.(index origin is Zero)
+    * @return {boolean} Returns true if either element meets the conditions. Returns false whenever Iterable is empty.
+    */
+    anyMatch(predicate: (value: T, index: number) => boolean): boolean;
+    /**
      * Concatenate iterable objects.
      * @param {Iterable.<Iterable.<T>>} subsequents Iterable objects.
      * @returns {Iteration.<T>} The new Iteration. Cannot reuse.
@@ -112,6 +126,24 @@ export declare class Iteration<T> {
      */
     zip(another: Iterable<T>): Iteration<Array<T>>;
 }
+/**
+ * Check if all the elements match.
+ *
+ * @template T element type
+ * @param {Iterable.<T>} iterable Iterable object.
+ * @param {(value: T, index: number) => boolean} predicate Predicate function used to inspect elements.(index origin is Zero)
+ * @return {boolean} Returns true if all elements meet the condition. Returns true whenever Iterable is empty.
+ */
+export declare function allMatch<T>(iterable: Iterable<T>, predicate: (value: T, index: number) => boolean): boolean;
+/**
+ * Check if any of the elements match.
+ *
+ * @template T element type
+ * @param {Iterable.<T>} iterable Iterable object.
+ * @param {(value: T, index: number) => boolean} predicate Predicate function used to inspect elements.(index origin is Zero)
+ * @return {boolean} Returns true if either element meets the conditions. Returns false whenever Iterable is empty.
+ */
+export declare function anyMatch<T>(iterable: Iterable<T>, predicate: (value: T, index: number) => boolean): boolean;
 /**
  * Concatenate iterable objects.
  * @template T element type

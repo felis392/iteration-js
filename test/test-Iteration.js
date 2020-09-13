@@ -4,6 +4,74 @@ const { is } = assert;
 
 import { rangeClosed } from '../rangeClosed.js';
 
+export function test_allMatch_1() {
+  const expected = true;
+  const actual =
+    Iteration.on(rangeClosed(1, 20))
+    .filter(value => value % 4 === 0)
+    .allMatch((value, index) => value % 2 === 0);
+  is(expected, actual);
+}
+
+export function test_allMatch_2() {
+  const expected = true;
+  const actual =
+    Iteration.on([])
+    .filter(value => value % 4 === 0)
+    .allMatch((value, index) => value % 2 === 0);
+  is(expected, actual);
+}
+
+export function test_allMatch_3() {
+  const expected = true;
+  const actual =
+    Iteration.on(rangeClosed(1, 20))
+    .allMatch((value, index) => index < 20);
+  is(expected, actual);
+}
+
+export function test_allMatch_4() {
+  const expected = false;
+  const actual =
+    Iteration.on(rangeClosed(1, 20))
+    .allMatch((value, index) => index < 10);
+  is(expected, actual);
+}
+
+export function test_anyMatch_1() {
+  const expected = true;
+  const actual =
+    Iteration.on(rangeClosed(1, 20))
+    .filter(value => value % 4 === 0)
+    .anyMatch((value, index) => value % 2 === 0);
+  is(expected, actual);
+}
+
+export function test_anyMatch_2() {
+  const expected = false;
+  const actual =
+    Iteration.on([])
+    .filter(value => value % 4 === 0)
+    .anyMatch((value, index) => value % 2 === 0);
+  is(expected, actual);
+}
+
+export function test_anyMatch_3() {
+  const expected = true;
+  const actual =
+    Iteration.on(rangeClosed(1, 20))
+    .anyMatch((value, index) => index === 19);
+  is(expected, actual);
+}
+
+export function test_anyMatch_4() {
+  const expected = false;
+  const actual =
+    Iteration.on(rangeClosed(1, 20))
+    .anyMatch((value, index) => index === 20);
+  is(expected, actual);
+}
+
 export function test_concat() {
   const expected = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
   const actual = Array.from(
