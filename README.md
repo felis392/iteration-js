@@ -51,6 +51,24 @@ Using the [npm] package manager:
 $ npm install @felis392/iteration-js
 ```
 
+Or Import from [UNPKG], this library URL is https://unpkg.com/@felis392/iteration-js/
+
+```ts
+// In Deno environment
+import { Iteration, rangeClosed } from 'https://unpkg.com/@felis392/iteration-js@0.4.0/index.ts';
+
+Iteration.on(rangeClosed(6, 8))
+.flatMap((value) => [value, (value * value)])
+.forEach((value, index) => console.log(`index = ${index}, value = ${value}`));
+
+// index = 0, value = 6
+// index = 1, value = 36
+// index = 2, value = 7
+// index = 3, value = 49
+// index = 4, value = 8
+// index = 5, value = 64
+```
+
 ## User Guide
 
 There are some functions that can be used alone and some that are wrapped in `Iteration`.
@@ -155,6 +173,17 @@ console.log(...filter([1,2,3,4,5,6,7,8], i => i % 2 === 0));
 // 2 4 6 8
 ```
 
+#### `flatMap(iterable, mapper)`
+
+Maps the element to another type. Then flatten it depth by 1.
+
+**Example**
+
+```js
+console.log(...flatMap([1,2,3,4], (v) => [v, v * v]));
+// 1 1 2 4 3 9 4 16
+```
+
 #### `limit(iterable, maxSize)`
 
 Limit the number of elements.
@@ -177,7 +206,119 @@ console.log(...map([1,2,3,4,5,6,7,8], i => i * i));
 // 1 4 9 16 25 36 49 64
 ```
 
+#### `peek(iterable, consumer)`
+
+Side-effect apply to elements. For debugging mainly
+
+**Example**
+
+```js
+console.log(...peek(flatMap([1,2,3,4], (v) => [v, v * v]), (v,i) => console.log(`@peek[${i}]: ${v}`)));
+// @peek[0]: 1
+// @peek[1]: 1
+// @peek[2]: 2
+// @peek[3]: 4
+// @peek[4]: 3
+// @peek[5]: 9
+// @peek[6]: 4
+// @peek[7]: 16
+// 1 1 2 4 3 9 4 16
+```
+
+#### `skip(iterable, number)`
+
+Skip the number of elements.
+
+**Example**
+
+```js
+console.log(...skip([1,2,3,4,5,6,7,8], 5));
+// 6 7 8
+```
+
+#### `takeWhile(iterable, condition)`
+
+Take elements while the condition is met.
+
+**Example**
+
+```js
+console.log(...takeWhile([1,2,3,4,5,6,7,8], i => i < 5));
+// 1 2 3 4
+```
+
+#### `zip(iterable, anoter)`
+
+Zip the two Iterables. results length is equals shorter one.
+
+**Example**
+
+```js
+console.log(...zip(map([1,2,3,4], String), "ABCDE"));
+// [ "1", "A" ] [ "2", "B" ] [ "3", "C" ] [ "4", "D" ]
+```
+
 ### Terminal operation
+
+#### `allMatch(iterable, condition)`
+
+Test that all of these elements meet the condition.
+
+**Example**
+
+```js
+const multipleOf3 = i => i % 3 === 0;
+console.log(allMatch([3,6,15,27,99], multipleOf3));
+// true
+```
+
+#### `anyMatch(iterable, condition)`
+
+Test that any of these elements meet the condition.
+
+**Example**
+
+```js
+const multipleOf3 = i => i % 3 === 0;
+console.log(anyMatch([2,5,11,31,44,68,75], multipleOf3));
+// true
+```
+
+#### `findFirst(iterable, condition)`
+
+Find first of these elements meet the condition.
+
+**Example**
+
+```js
+const multipleOf3 = i => i % 3 === 0;
+console.log(findFirst([2,5,11,31,44,68,75], multipleOf3));
+// 75
+```
+
+#### `forEach(iterable, consumer)`
+
+Side-effect apply to each elements.
+
+**Example**
+
+```js
+forEach([1,3,5], (val, index) => console.log(`${index} -> ${val}`));
+// 0 -> 1
+// 1 -> 3
+// 2 -> 5
+```
+
+#### `reduce(iterable, reducer, initial)`
+
+Apply Reduce function to elements, returns single results.
+
+**Example**
+
+```js
+console.log(reduce([1,2,3,4], (r,e) => (r) + e, 0));
+// 10
+```
 
 ## Special thanks
 
@@ -192,6 +333,7 @@ Lightweight, easy to write and native to ES modules. Really the best.
 [TypeScript]: https://www.typescriptlang.org/
 [npm]: https://www.npmjs.com/
 [yarn]: https://classic.yarnpkg.com/en/
+[UNPKG]: https://unpkg.com/
 [tiny-esm-test-runner]: https://github.com/piroor/tiny-esm-test-runner
 [npm_version]: https://img.shields.io/npm/v/@felis392/iteration-js
 [npm_downloads]: https://img.shields.io/npm/dm/@felis392/iteration-js
