@@ -204,5 +204,8 @@ export class Iteration {
     zip(another) {
         return Iteration.on(zip(this[$iterable], another));
     }
+    [Symbol.iterator]() {
+        return this.toIterable();
+    }
 }
 export default Iteration;

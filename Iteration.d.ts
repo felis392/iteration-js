@@ -134,5 +134,6 @@ export declare class Iteration<T> {
      * @returns {Iteration.<Array.<T>>} The new Iteration. Cannot reuse.
      */
     zip(another: Iterable<T>): Iteration<Array<T>>;
+    [Symbol.iterator](): Iterable<T>;
 }
 export default Iteration;

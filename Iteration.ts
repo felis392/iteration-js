@@ -243,6 +243,10 @@ export class Iteration<T> {
   zip(another: Iterable<T>): Iteration<Array<T>> {
     return Iteration.on(zip(this[$iterable], another));
   }
+
+  [Symbol.iterator](): Iterable<T> {
+    return this.toIterable();
+  }
 }
 
 export default Iteration;

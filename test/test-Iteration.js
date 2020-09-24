@@ -296,3 +296,11 @@ export function test_zip() {
     is(expected[index], actual);
   });
 }
+
+export function test_Symbol_iterator() {
+  const expected = [3,4,5,6,7,8,9,10];
+  for (const actual of Iteration.on([1,2,3,4,5,6,7,8,9,10]).skip(2)) {
+    is(expected[0], actual);
+    expected.shift();
+  }
+}
