@@ -29,7 +29,7 @@ console.log(lcm);
 const total = Iteration.on(rangeClosed(1, 10000))
 .filter(i => i % 17 === 0)
 .filter(i => i % 19 === 0)
-.reduce(0, (r, e) => r + e);
+.reduce((r, e) => r + e, 0);
 
 console.log(total);
 // 150195
