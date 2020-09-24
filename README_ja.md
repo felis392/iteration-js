@@ -3,6 +3,8 @@
 ![npm_version] ![npm_downloads] ![github_license] ![github_issues]
 ![github_watchers] ![github_stars] ![github_forks]
 
+[English Version](./README.md)
+
 ## 紹介
 
 - これはJavaScriptのインタフェースである`Iterable`に関連する関数を集めたライブラリです。

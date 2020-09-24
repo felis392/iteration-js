@@ -3,6 +3,8 @@
 ![npm_version] ![npm_downloads] ![github_license] ![github_issues]
 ![github_watchers] ![github_stars] ![github_forks]
 
+[日本語版](./README_ja.md)
+
 ## Introduction
 
 - This is utilities for JavaScript `Iterable`.
